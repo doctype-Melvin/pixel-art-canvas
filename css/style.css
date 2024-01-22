@@ -42,3 +42,25 @@ h1 {
 .grid {
   background-color: #a5e794;
 }
+
+.grid-container {
+  height: 100%;
+  display: grid;
+  gap: 1px;
+}
+
+.cell {
+  background-color: #fff;
+}
+
+.resolution-button {
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  background-color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  width: 6rem;
+}
