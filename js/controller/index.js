@@ -26,15 +26,20 @@ button32x32.classList.add("resolution-button");
 button32x32.setAttribute("data-resolution", "32");
 
 const colorPicker = document.createElement("input");
-
 colorPicker.type = "color";
+colorPicker.classList.add("color-picker");
+// colorPicker.addEventListener("change", (e, color) => {
+//   color = e.target.value;
+// });
 
 const fillButton = document.createElement("button");
 
+fillButton.classList.add("fill-button");
 fillButton.textContent = "Fill";
 
 const resetButton = document.createElement("button");
 
+resetButton.classList.add("reset-button");
 resetButton.textContent = "Reset";
 
 resolutionButtons.append(button8x8, button12x12, button16x16, button32x32);

@@ -47,6 +47,7 @@ h1 {
   height: 100%;
   display: grid;
   gap: 1px;
+  padding-bottom: 5rem;
 }
 
 .cell {
