@@ -30,38 +30,96 @@ h1 {
 
 #app {
   height: 100%;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 2fr;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .controller {
-  background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  flex: 1;
+}
+
+.resolution-buttons,
+.modifier-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+}
+
+.resolution-buttons > *:nth-child(1) {
+  background-color: yellowgreen;
+}
+
+.resolution-buttons > *:nth-child(2) {
+  background-color: rgb(140, 140, 255);
+}
+
+.resolution-buttons > *:nth-child(3) {
+  background-color: orange;
+}
+
+.resolution-buttons > *:nth-child(4) {
+  background-color: yellow;
+}
+
+.color-picker {
+  margin-right: 2rem;
+}
+
+.download-button {
+  background-color: #ffffff;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  gap: 0.5rem;
+}
+
+.download-button > button:hover {
+  cursor: pointer;
 }
 
 .grid {
-  background-color: #a5e794;
+  background-color: #d8d8d8;
+  border: 1px solid #d8d8d8;
+  display: flex;
+  flex: 1;
 }
 
 .grid-container {
-  height: 100%;
   display: grid;
+  height: fit-content;
+  flex: 1;
   gap: 1px;
-  padding-bottom: 5rem;
 }
 
 .cell {
-  background-color: #fff;
+  background-color: #ffffff;
+  aspect-ratio: 1;
 }
 
-.resolution-button {
-  margin: 0 auto;
-  padding: 0.5rem 1rem;
+.resolution-button,
+.fill-button,
+.reset-button {
+  width: 5rem;
   border: none;
+  padding: 0.5rem 0;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
   border-radius: 0.25rem;
-  background-color: #fff;
-  font-size: 1rem;
-  font-weight: 700;
-  cursor: pointer;
-  width: 6rem;
+}
+
+.fill-button {
+  background-color: rgba(68, 234, 104, 0.646);
+}
+
+.reset-button {
+  background-color: rgb(218, 18, 71);
+  color: #fff;
 }

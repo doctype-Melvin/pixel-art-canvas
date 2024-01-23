@@ -1,16 +1,23 @@
 export const controllerSection = document.createElement("section");
 controllerSection.classList.add("controller");
-controllerSection.textContent = "Controller";
 
-// ------------------ Button Container ------------------
 const buttonContainer = document.createElement("div");
+buttonContainer.classList.add("button-container");
 
 const resolutionButtons = document.createElement("div");
+resolutionButtons.classList.add("resolution-buttons");
 
 const button8x8 = document.createElement("button");
 const button12x12 = document.createElement("button");
 const button16x16 = document.createElement("button");
 const button32x32 = document.createElement("button");
+
+const modifierButtons = document.createElement("div");
+const fillButton = document.createElement("button");
+const resetButton = document.createElement("button");
+const colorPicker = document.createElement("input");
+
+const downloadButton = document.createElement("button");
 
 button8x8.textContent = "8x8";
 button8x8.classList.add("resolution-button");
@@ -25,23 +32,20 @@ button32x32.textContent = "32x32";
 button32x32.classList.add("resolution-button");
 button32x32.setAttribute("data-resolution", "32");
 
-const colorPicker = document.createElement("input");
+modifierButtons.classList.add("modifier-buttons");
+
 colorPicker.type = "color";
 colorPicker.classList.add("color-picker");
-// colorPicker.addEventListener("change", (e, color) => {
-//   color = e.target.value;
-// });
-
-const fillButton = document.createElement("button");
 
 fillButton.classList.add("fill-button");
 fillButton.textContent = "Fill";
 
-const resetButton = document.createElement("button");
-
 resetButton.classList.add("reset-button");
 resetButton.textContent = "Reset";
 
+downloadButton.classList.add("download-button");
+downloadButton.textContent = "Download";
+
 resolutionButtons.append(button8x8, button12x12, button16x16, button32x32);
-buttonContainer.append(resolutionButtons, colorPicker, fillButton, resetButton);
-controllerSection.append(buttonContainer);
+modifierButtons.append(fillButton, resetButton, colorPicker);
+controllerSection.append(resolutionButtons, modifierButtons, downloadButton);
