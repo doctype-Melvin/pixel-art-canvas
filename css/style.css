@@ -21,6 +21,7 @@ h1 {
 
 main {
   height: 100%;
+  background-color: rgb(4, 9, 40);
 }
 
 h1 {
@@ -33,6 +34,8 @@ h1 {
   width: 100%;
   display: flex;
   flex-direction: column;
+  flex-flow: column-reverse;
+  padding: 0.5rem;
 }
 
 .controller {
@@ -46,9 +49,18 @@ h1 {
 
 .resolution-buttons,
 .modifier-buttons {
-  display: flex;
-  justify-content: space-between;
   width: 90%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.resolution-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  justify-items: center;
+  gap: 1rem;
 }
 
 .resolution-buttons > *:nth-child(1) {
@@ -68,7 +80,14 @@ h1 {
 }
 
 .color-picker {
-  margin-right: 2rem;
+  height: 2rem;
+  width: 4.5rem;
+}
+
+.modifier-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .download-button {
@@ -82,12 +101,20 @@ h1 {
   gap: 0.5rem;
 }
 
+.download-button {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(254, 219, 130),
+    rgb(20, 97, 169)
+  );
+  margin-top: -1.75rem;
+}
+
 .download-button > button:hover {
   cursor: pointer;
 }
 
 .grid {
-  background-color: #d8d8d8;
   border: 1px solid #d8d8d8;
   display: flex;
   flex: 1;
@@ -101,8 +128,14 @@ h1 {
 }
 
 .cell {
-  background-color: #ffffff;
   aspect-ratio: 1;
+}
+
+.resolution-button:hover,
+.fill-button:hover {
+  cursor: pointer;
+  scale: 1.1;
+  transition: scale 0.2s ease-in-out;
 }
 
 .resolution-button,
@@ -113,13 +146,54 @@ h1 {
   padding: 0.5rem 0;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
   border-radius: 0.25rem;
+  font-size: 1rem;
 }
 
 .fill-button {
-  background-color: rgba(68, 234, 104, 0.646);
+  background-color: rgb(255, 213, 108);
 }
 
 .reset-button {
   background-color: rgb(218, 18, 71);
   color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  main {
+    display: flex;
+    align-items: center;
+  }
+
+  #app {
+    flex-direction: row-reverse;
+    height: fit-content;
+    padding: 2rem;
+  }
+
+  .controller {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .controller {
+    flex: 1;
+  }
+
+  .grid {
+    flex: 1;
+  }
+
+  .resolution-buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+  }
+
+  .modifier-buttons {
+    width: 50%;
+  }
+
+  .download-button {
+    margin-top: 0;
+  }
 }

@@ -35,10 +35,6 @@ fillButton.addEventListener("click", () => {
   setFill(true);
 });
 
-resetButton.addEventListener("click", () => {
-  resetGrid(resolution);
-});
-
 imageFormats.forEach((format) => {
   const name = format;
   const button = document.createElement("button");

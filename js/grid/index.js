@@ -9,19 +9,21 @@ let color = "black";
 let fill = false;
 let resolution = "";
 
+// Flag to toggle fill mode
 export const setFill = () => (fill = !fill);
+
 export const setColor = (value) => (color = value);
 export const setResolution = (value) => (resolution = value);
 
 const fillBucket = (rowStart, columnStart) => {
-  // Store the color of the clicked cell
+  // Store color of clicked cell
   const clickedCellColor = document.querySelector(
     `.cell[data-row="${rowStart}"][data-column="${columnStart}"]`
   ).style.backgroundColor;
 
   // Traversal algorithm
   const findCells = (row, column) => {
-    // Base case- don't go out of bounds
+    // Base case - don't go out of bounds
     if (row < 0 || row >= resolution || column < 0 || column >= resolution)
       return;
 
