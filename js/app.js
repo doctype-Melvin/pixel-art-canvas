@@ -17,13 +17,12 @@ let resolution = 8;
 
 const imageFormats = ["png", "jpg", "gif"];
 
-const sizerButtons = [...document.querySelectorAll(".resolution-button")];
+const resolutionButtons = [...document.querySelectorAll(".resolution-button")];
 const colorPicker = document.querySelector(".color-picker");
 const fillButton = document.querySelector(".fill-button");
-const resetButton = document.querySelector(".reset-button");
 const downloadButton = document.querySelector(".download-button");
 
-sizerButtons.forEach((button) => {
+resolutionButtons.forEach((button) => {
   button.addEventListener("click", (e) => {
     resolution = Number(e.target.dataset.resolution);
     setResolution(resolution);
