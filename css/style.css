@@ -184,14 +184,9 @@ h1 {
     flex: 1;
   }
 
-  .resolution-buttons {
-    display: flex;
-    justify-content: space-around;
-    width: 50%;
-  }
-
+  .resolution-buttons,
   .modifier-buttons {
-    width: 50%;
+    width: 45%;
   }
 
   .download-button {
