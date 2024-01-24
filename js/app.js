@@ -12,7 +12,7 @@ import {
   // Title only shown on large screens -> style.css
   const title = document.createElement("h1");
   title.classList.add("title");
-  title.textContent = "👩🏻‍🎨 Mini Pixel Art 🎨";
+  title.textContent = "👩🏻‍🎨 Mini Pixel Art Canvas 🎨";
 
   app.append(title, gridSection, controllerSection);
 
@@ -36,7 +36,6 @@ import {
   const grabAllCells = () => {
     [...document.querySelectorAll(".cell")].forEach((cell) => {
       cell.addEventListener("click", (e) => {
-        console.log("Current color", color);
         if (fill) {
           fillBucket(
             Number(e.target.dataset.row),
@@ -62,6 +61,9 @@ import {
   const colorPicker = document.querySelector(".color-picker");
   const fillButton = document.querySelector(".fill-button");
   const downloadButton = document.querySelector(".download-button");
+  const dropDownButton = document.querySelector(".drop-down-button");
+  const dropDownContent = document.querySelector(".drop-down-content");
+  const dropDownItems = [...document.querySelectorAll(".drop-down-item")];
 
   const resolutionButtons = [
     ...document.querySelectorAll(".resolution-button"),
@@ -80,6 +82,28 @@ import {
 
   colorPicker.addEventListener("change", (e) => {
     setColor(e.target.value);
+  });
+
+  dropDownButton.addEventListener("click", () => {
+    dropDownContent.style.backdropFilter =
+      dropDownContent.style.backdropFilter === "blur(15px)"
+        ? "none"
+        : "blur(15px)";
+    dropDownContent.style.display =
+      dropDownContent.style.display === "block" ? "none" : "block";
+  });
+
+  window.addEventListener("click", (e) => {
+    if (!e.target.matches(".drop-down-button")) {
+      dropDownContent.style.display = "none";
+      dropDownContent.style.backdropFilter = "none";
+    }
+  });
+
+  dropDownItems.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      download(e.target.textContent, resolution);
+    });
   });
 
   imageFormats.forEach((format) => {

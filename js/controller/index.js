@@ -60,6 +60,34 @@ colorPicker.classList.add("color-picker");
 
 const downloadButton = buttonFactory("download-button", null, "Download 📥");
 
+const dropDown = document.createElement("div");
+dropDown.classList.add("drop-down");
+
+const dropDownContent = document.createElement("div");
+dropDownContent.classList.add("drop-down-content");
+
+const dropDownTitle = document.createElement("h3");
+dropDownTitle.classList.add("drop-down-title");
+dropDownTitle.textContent = "Download as:";
+
+const flexDropDown = document.createElement("div");
+flexDropDown.classList.add("flex-drop-down");
+
+const pngButton = buttonFactory("drop-down-item", null, "png");
+const jpgButton = buttonFactory("drop-down-item", null, "jpg");
+const gifButton = buttonFactory("drop-down-item", null, "gif");
+
+const dropDownButton = buttonFactory("drop-down-button", null, "Download 🔽");
+
+flexDropDown.append(dropDownTitle, pngButton, jpgButton, gifButton);
+dropDownContent.append(flexDropDown);
+dropDown.append(dropDownContent, dropDownButton);
+
 resolutionButtons.append(button8x8, button12x12, button16x16, button32x32);
 modifierButtons.append(fillButton, colorPicker);
-controllerSection.append(resolutionButtons, modifierButtons, downloadButton);
+controllerSection.append(
+  resolutionButtons,
+  modifierButtons,
+  downloadButton,
+  dropDown
+);

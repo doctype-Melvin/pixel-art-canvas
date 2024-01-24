@@ -15,3 +15,8 @@ The app.js file exxentially assembles the two main sections 'controller' and 'gr
 The controller (./js/controller/index.js) holds all buttons to, well, controll the app. Analogous to that, ./js/grid/index.js holds all relevant elements and functions for the grid component.
 
 app.js essentially appends all elements to the dom and supplies buttons with event listeners.
+
+## Issues
+
+When users fill the grid and then choose to use the fill tool again, rangeError occurs. Problem seems to be in
+the BFS algorithm. Tried to rewrite the logic with a stack-based recursion but that didn't solve it.
