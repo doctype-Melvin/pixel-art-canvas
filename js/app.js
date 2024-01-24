@@ -11,7 +11,11 @@ import {
 
 const app = document.querySelector('[data-js="app"');
 
-app.append(gridSection, controllerSection);
+const title = document.createElement("h1");
+title.classList.add("title");
+title.textContent = "Mini Pixel Art Maker";
+
+app.append(title, gridSection, controllerSection);
 
 let resolution = 8;
 
