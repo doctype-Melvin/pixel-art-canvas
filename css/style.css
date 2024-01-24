@@ -21,7 +21,12 @@ h1 {
 
 main {
   height: 100%;
-  background-color: rgb(4, 9, 40);
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(230, 232, 249),
+    rgb(92, 102, 196),
+    rgb(6, 38, 68)
+  );
 }
 
 h1 {
@@ -191,6 +196,14 @@ h1 {
 }
 
 @media screen and (min-width: 768px) {
+  main {
+    background-image: linear-gradient(
+      to bottom right,
+      rgb(230, 232, 249),
+      rgb(6, 38, 68)
+    );
+  }
+
   #app {
     display: grid;
     grid-template-columns: 1fr 1fr;
