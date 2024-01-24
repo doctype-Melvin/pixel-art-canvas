@@ -11,10 +11,10 @@ Also users may download their pixel art in png, jpg or gif format.
 ## Code Structure
 
 This app is written in HTML, CSS, JavaScript - no dependencies.
-The app.js file exxentially assembles the two main sections 'controller' and 'grid' together.
+The app.js file essentially assembles the two main sections 'controller' and 'grid' together.
 The controller (./js/controller/index.js) holds all buttons to, well, controll the app. Analogous to that, ./js/grid/index.js holds all relevant elements and functions for the grid component.
 
-app.js essentially appends all elements to the dom and supplies buttons with event listeners.
+Finally app.js appends all elements to the dom and supplies buttons with event listeners.
 
 ## Issues
 

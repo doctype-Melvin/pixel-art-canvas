@@ -195,6 +195,7 @@ h1 {
   color: #fff;
 }
 
+/* -----------Desktop View---large screens--------- */
 @media screen and (min-width: 768px) {
   main {
     background-image: linear-gradient(
