@@ -4,24 +4,14 @@ gridSection.classList.add("grid");
 const gridContainer = document.createElement("div");
 gridContainer.classList.add("grid-container");
 
-let color = "black";
-
-let fill = false;
-let resolution = "";
-
-// Flag to toggle fill mode
-export const setFill = () => (fill = !fill);
-
-export const setColor = (value) => (color = value);
-export const setResolution = (value) => (resolution = value);
-
-const fillBucket = (rowStart, columnStart) => {
+// Traversal algorithm
+export const fillBucket = (rowStart, columnStart, resolution, color) => {
   // Store color of clicked cell
   const clickedCellColor = document.querySelector(
     `.cell[data-row="${rowStart}"][data-column="${columnStart}"]`
   ).style.backgroundColor;
 
-  // Traversal algorithm
+  // Recursive function
   const findCells = (row, column) => {
     // Base case - don't go out of bounds
     if (row < 0 || row >= resolution || column < 0 || column >= resolution)
@@ -33,6 +23,7 @@ const fillBucket = (rowStart, columnStart) => {
     );
 
     const currentCellColor = currentCell.style.backgroundColor;
+
     // Change cell color if it matches the clicked cell color
     // and recursively call the function on the adjacent cells
     if (currentCellColor === clickedCellColor) {
@@ -46,9 +37,9 @@ const fillBucket = (rowStart, columnStart) => {
   findCells(rowStart, columnStart);
 };
 
-// Creates cells with coordinates and
-// adds event listener to each cell
-export const cellFactory = (row, column) => {
+// Creates cells with coordinates
+// Alias creater callback
+const cellFactory = (row, column, fill, color) => {
   const cell = document.createElement("div");
 
   cell.classList.add("cell");
@@ -56,15 +47,6 @@ export const cellFactory = (row, column) => {
 
   cell.dataset.row = row;
   cell.dataset.column = column;
-
-  cell.addEventListener("click", (e) => {
-    if (fill) {
-      fillBucket(Number(e.target.dataset.row), Number(e.target.dataset.column));
-      setFill();
-    } else {
-      e.target.style.backgroundColor = color;
-    }
-  });
   return cell;
 };
 
@@ -78,38 +60,13 @@ export const createGrid = (resolution) => {
       gridContainer.append(cell);
     }
   }
-  setResolution(resolution);
 };
 
 export const resetGrid = (resolution) => {
   while (gridContainer.firstChild) {
     gridContainer.removeChild(gridContainer.firstChild);
   }
-  setResolution(resolution);
   createGrid(resolution);
 };
 
 gridSection.append(gridContainer);
-
-export const download = (format) => {
-  const canvas = document.createElement("canvas");
-  const ctx = canvas.getContext("2d");
-
-  canvas.width = resolution * 100;
-  canvas.height = resolution * 100;
-
-  const cells = [...document.querySelectorAll(".cell")];
-  cells.forEach((cell, index) => {
-    const row = Math.floor(index / resolution);
-    const col = index % resolution;
-    const color = window.getComputedStyle(cell).backgroundColor;
-    ctx.fillStyle = color;
-    ctx.fillRect(col * 100, row * 100, 100, 100);
-  });
-
-  const dataURL = canvas.toDataURL(`image/${format}`);
-  const link = document.createElement("a");
-  link.href = dataURL;
-  link.download = `pixel-art.${format}`;
-  link.click();
-};

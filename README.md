@@ -12,6 +12,6 @@ Also users may download their pixel art in png, jpg or gif format.
 
 This app is written in HTML, CSS, JavaScript - no dependencies.
 The app.js file exxentially assembles the two main sections 'controller' and 'grid' together.
-The controller holds all buttons to, well, controll the app. In ./js/controller/index.js all button definitions can be found. Analogous to that, ./js/grid/index.js holds all relevant elements and functions for the grid component.
+The controller (./js/controller/index.js) holds all buttons to, well, controll the app. Analogous to that, ./js/grid/index.js holds all relevant elements and functions for the grid component.
 
 app.js essentially appends all elements to the dom and supplies buttons with event listeners.

@@ -109,8 +109,8 @@ h1 {
 .download-button {
   background-image: linear-gradient(
     to bottom right,
-    rgb(254, 219, 130),
-    rgb(20, 97, 169)
+    rgb(252, 234, 189),
+    rgb(196, 226, 255)
   );
   margin-top: -1.75rem;
 }
@@ -136,13 +136,6 @@ h1 {
   aspect-ratio: 1;
 }
 
-.resolution-button:hover,
-.fill-button:hover {
-  cursor: pointer;
-  scale: 1.1;
-  transition: scale 0.2s ease-in-out;
-}
-
 .resolution-button,
 .fill-button,
 .reset-button {
@@ -155,7 +148,11 @@ h1 {
 }
 
 .fill-button {
-  background-color: rgb(255, 213, 108);
+  background-color: rgb(204, 204, 204);
+}
+
+.fill-button--active {
+  background-color: rgb(120, 222, 37);
 }
 
 .reset-button {
@@ -172,9 +169,11 @@ h1 {
   }
 
   .title {
-    display: inline-block;
+    display: flex;
     color: #fff;
     grid-area: 1 / 1 / 2 / 3;
+    justify-content: center;
+    align-items: center;
   }
 
   .controller {
@@ -194,6 +193,20 @@ h1 {
   .resolution-buttons,
   .modifier-buttons {
     width: 45%;
+  }
+
+  .resolution-button:hover,
+  .fill-button:hover {
+    cursor: pointer;
+    scale: 1.1;
+    transition: scale 0.2s ease-in-out;
+  }
+
+  .resolution-button:active,
+  .fill-button:active {
+    scale: 0.9;
+    background-color: rgba(122, 122, 122, 0.25);
+    transition: all 0.2s ease-in-out;
   }
 
   .download-button {

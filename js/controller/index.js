@@ -1,3 +1,4 @@
+// Creates button elements
 const buttonFactory = (className, resolution, text) => {
   const button = document.createElement("button");
   button.classList.add(className);
@@ -10,12 +11,33 @@ const buttonFactory = (className, resolution, text) => {
   return button;
 };
 
+// Logic for downloading the grid as an image
+export const download = (format, resolution) => {
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = resolution * 100;
+  canvas.height = resolution * 100;
+
+  const cells = [...document.querySelectorAll(".cell")];
+  cells.forEach((cell, index) => {
+    const row = Math.floor(index / resolution);
+    const col = index % resolution;
+    const color = window.getComputedStyle(cell).backgroundColor;
+    ctx.fillStyle = color;
+    ctx.fillRect(col * 100, row * 100, 100, 100);
+  });
+
+  const dataURL = canvas.toDataURL(`image/${format}`);
+  const link = document.createElement("a");
+  link.href = dataURL;
+  link.download = `pixel-art.${format}`;
+  link.click();
+};
+
 // Section contains all buttons
 export const controllerSection = document.createElement("section");
 controllerSection.classList.add("controller");
-
-const buttonContainer = document.createElement("div");
-buttonContainer.classList.add("button-container");
 
 // Buttons to set grid resolution
 const resolutionButtons = document.createElement("div");

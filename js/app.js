@@ -1,55 +1,93 @@
-import { controllerSection } from "./controller/index.js";
+import { controllerSection, download } from "./controller/index.js";
 import {
   gridSection,
+  fillBucket,
   createGrid,
   resetGrid,
-  setFill,
-  setColor,
-  setResolution,
-  download,
 } from "./grid/index.js";
 
-const app = document.querySelector('[data-js="app"');
+(() => {
+  const app = document.querySelector('[data-js="app"');
 
-const title = document.createElement("h1");
-title.classList.add("title");
-title.textContent = "Mini Pixel Art Maker";
+  // Title only shown on large screens -> style.css
+  const title = document.createElement("h1");
+  title.classList.add("title");
+  title.textContent = "👩🏻‍🎨 Mini Pixel Art 🎨";
 
-app.append(title, gridSection, controllerSection);
+  app.append(title, gridSection, controllerSection);
 
-let resolution = 8;
+  // -----APP setup-----
+  let resolution = 8;
+  const setResolution = (value) => (resolution = value);
 
-const imageFormats = ["png", "jpg", "gif"];
+  let color = "";
+  const setColor = (value) => (color = value);
 
-const resolutionButtons = [...document.querySelectorAll(".resolution-button")];
-const colorPicker = document.querySelector(".color-picker");
-const fillButton = document.querySelector(".fill-button");
-const downloadButton = document.querySelector(".download-button");
+  let fill = false;
+  const setFill = () => {
+    fill = !fill;
+    fill
+      ? fillButton.classList.add("fill-button--active")
+      : fillButton.classList.remove("fill-button--active");
+  };
 
-resolutionButtons.forEach((button) => {
-  button.addEventListener("click", (e) => {
-    resolution = Number(e.target.dataset.resolution);
-    setResolution(resolution);
-    resetGrid(resolution);
+  const imageFormats = ["png", "jpg", "gif"];
+
+  const grabAllCells = () => {
+    [...document.querySelectorAll(".cell")].forEach((cell) => {
+      cell.addEventListener("click", (e) => {
+        console.log("Current color", color);
+        if (fill) {
+          fillBucket(
+            Number(e.target.dataset.row),
+            Number(e.target.dataset.column),
+            resolution,
+            color ? color : "black"
+          );
+          setFill();
+        } else {
+          e.target.style.backgroundColor = color ? color : "black";
+        }
+      });
+    });
+  };
+
+  // -----Initialize app-----
+
+  createGrid(resolution);
+  grabAllCells();
+
+  // -----Apply event listeners-----
+
+  const colorPicker = document.querySelector(".color-picker");
+  const fillButton = document.querySelector(".fill-button");
+  const downloadButton = document.querySelector(".download-button");
+
+  const resolutionButtons = [
+    ...document.querySelectorAll(".resolution-button"),
+  ];
+  resolutionButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      setResolution(Number(e.target.dataset.resolution));
+      resetGrid(resolution);
+      grabAllCells();
+    });
   });
-});
 
-fillButton.addEventListener("click", () => {
-  setFill(true);
-});
-
-imageFormats.forEach((format) => {
-  const name = format;
-  const button = document.createElement("button");
-  button.textContent = name;
-  button.addEventListener("click", () => {
-    download(format);
+  fillButton.addEventListener("click", () => {
+    setFill();
   });
-  downloadButton.append(button);
-});
 
-colorPicker.addEventListener("change", (e) => {
-  setColor(e.target.value);
-});
+  colorPicker.addEventListener("change", (e) => {
+    setColor(e.target.value);
+  });
 
-createGrid(resolution);
+  imageFormats.forEach((format) => {
+    const button = document.createElement("button");
+    button.textContent = format;
+    button.addEventListener("click", () => {
+      download(format, resolution);
+    });
+    downloadButton.append(button);
+  });
+})();
